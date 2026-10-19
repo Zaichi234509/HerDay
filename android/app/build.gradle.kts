@@ -11,6 +11,8 @@ android {
     ndkVersion = "27.0.12077973"
 
     compileOptions {
+        // Required by flutter_local_notifications for scheduled reminders.
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }

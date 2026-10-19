@@ -112,6 +112,7 @@ class JournalEntry {
   String tags;
   bool isFavorite;
   DateTime entryDate;
+  String imageUrl;
 
   JournalEntry({
     required this.id,
@@ -121,6 +122,7 @@ class JournalEntry {
     this.tags = '',
     this.isFavorite = false,
     required this.entryDate,
+    this.imageUrl = '',
   });
 
   factory JournalEntry.fromMap(Map<String, dynamic> m) => JournalEntry(
@@ -131,6 +133,37 @@ class JournalEntry {
         tags: _s(m['tags']),
         isFavorite: m['is_favorite'] as bool? ?? false,
         entryDate: parseDate(m['entry_date'] as String?),
+        imageUrl: _s(m['image_url']),
+      );
+}
+
+class Reminder {
+  final String id;
+  String title;
+  String body;
+  String remindTime; // 'HH:mm'
+  String kind; // morning | water | journal | custom
+  int notifId;
+  bool isEnabled;
+
+  Reminder({
+    required this.id,
+    required this.title,
+    this.body = '',
+    this.remindTime = '08:00',
+    this.kind = 'custom',
+    this.notifId = 0,
+    this.isEnabled = true,
+  });
+
+  factory Reminder.fromMap(Map<String, dynamic> m) => Reminder(
+        id: _s(m['id']),
+        title: _s(m['title']),
+        body: _s(m['body']),
+        remindTime: _s(m['remind_time']).isEmpty ? '08:00' : _s(m['remind_time']),
+        kind: _s(m['kind']).isEmpty ? 'custom' : _s(m['kind']),
+        notifId: _i(m['notif_id']),
+        isEnabled: m['is_enabled'] as bool? ?? true,
       );
 }
 

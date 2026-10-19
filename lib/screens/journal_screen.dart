@@ -107,8 +107,20 @@ class _JournalScreenState extends State<JournalScreen> {
                         }
                       },
                       child: Card(
-                        child: ListTile(
-                          onTap: () => _openEditor(existing: e),
+                        clipBehavior: Clip.antiAlias,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (e.imageUrl.isNotEmpty)
+                              Image.network(
+                                e.imageUrl,
+                                height: 150,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                              ),
+                            ListTile(
+                              onTap: () => _openEditor(existing: e),
                           leading: Text(e.mood, style: const TextStyle(fontSize: 30)),
                           title: Text(
                             e.title.isEmpty ? shortDate(e.entryDate) : e.title,
@@ -137,7 +149,9 @@ class _JournalScreenState extends State<JournalScreen> {
                                 if (mounted) showError(context, err);
                               }
                             },
+                            ),
                           ),
+                          ],
                         ),
                       ),
                     );
@@ -293,6 +307,43 @@ class _JournalEditorScreenState extends State<JournalEditorScreen> {
               hintText: '#school #stress #happy',
               prefixIcon: Icon(Icons.tag),
             ),
+          ),
+          const SizedBox(height: 16),
+          if (_newImageBytes != null)
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.memory(_newImageBytes!, height: 180, width: double.infinity, fit: BoxFit.cover),
+            )
+          else if (_imageUrl.isNotEmpty)
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                _imageUrl,
+                height: 180,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+              ),
+            ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              OutlinedButton.icon(
+                onPressed: _saving ? null : _pickPhoto,
+                icon: const Icon(Icons.photo_outlined),
+                label: Text(_newImageBytes != null || _imageUrl.isNotEmpty ? 'Change photo 📸' : 'Add photo 📸'),
+              ),
+              if (_newImageBytes != null || _imageUrl.isNotEmpty)
+                TextButton(
+                  onPressed: _saving
+                      ? null
+                      : () => setState(() {
+                            _newImageBytes = null;
+                            _imageUrl = '';
+                          }),
+                  child: const Text('Remove'),
+                ),
+            ],
           ),
         ],
       ),

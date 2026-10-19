@@ -6,12 +6,16 @@ import '../core/theme.dart';
 import '../data/herday_db.dart';
 import '../models/models.dart';
 import '../widgets/common.dart';
+import 'assistant_screen.dart';
 import 'budget_screen.dart';
+import 'export_screen.dart';
 import 'goals_screen.dart';
 import 'habits_screen.dart';
 import 'journal_screen.dart';
 import 'meals_screen.dart';
+import 'reminders_screen.dart';
 import 'shopping_screen.dart';
+import 'stats_screen.dart';
 import 'vault_screen.dart';
 
 class _MeData {

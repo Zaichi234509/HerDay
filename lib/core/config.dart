@@ -12,6 +12,13 @@ const String supabaseUrl = String.fromEnvironment(
   defaultValue: 'https://qewzyquyeqgpixliqfyz.supabase.co',
 );
 
+/// Timezone used for daily reminder scheduling. HerDay is made for the
+/// Philippines — change this if she ever lives in another timezone.
+const String herDayTimezone = 'Asia/Manila';
+
+/// Public Supabase Storage bucket for memory / journal photos.
+const String photosBucket = 'memories';
+
 const String supabaseAnonKey = String.fromEnvironment(
   'SUPABASE_ANON_KEY',
   defaultValue:

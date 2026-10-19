@@ -3,9 +3,12 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'app.dart';
 import 'core/config.dart';
+import 'core/notifications_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
+  // Local reminders — never let a platform issue block app startup.
+  await NotificationsService.instance.init();
   runApp(const HerDayApp());
 }

@@ -125,13 +125,12 @@ supabase/migrations/           # Database schema (already applied live)
 
 ---
 
-## 🗺️ Roadmap ideas (Phase 4)
+## 🗺️ Roadmap ideas (future)
 
-- 🔔 Local notifications (water, journal, task reminders)
-- 📊 Mood trends + spending analytics charts
-- 🤖 "Ask HerDay" assistant ("What do I need to do today?")
-- 📸 Photo uploads via Supabase Storage (memories currently accept photo URLs)
-- 📤 Backup / export journal
+- 🤖 Upgrade "Ask HerDay" to a full LLM via a Supabase Edge Function (the chat UI already isolates the answer logic)
+- 🔐 Signed/private photo URLs instead of a public bucket
+- 📍 Location-based reminders, shared couple accounts (two users, one shared "Us" space)
+- 🌐 Deploy the web build (Flutter web + Vercel) as an installable PWA
 
 ---
 

@@ -351,6 +351,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     _QuickAction(emoji: '💧', label: 'Self-Care', onTap: () => _push(const HabitsScreen())),
                     _QuickAction(emoji: '🍱', label: 'Meals', onTap: () => _push(const MealsScreen())),
                     _QuickAction(emoji: '🎯', label: 'Goals', onTap: () => _push(const GoalsScreen())),
+                    _QuickAction(emoji: '🤖', label: 'Ask HerDay', onTap: () => _push(const AssistantScreen())),
                   ],
                 ),
               ],

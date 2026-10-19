@@ -142,6 +142,7 @@ class HerDayDb {
     required String mood,
     required String tags,
     required DateTime date,
+    String imageUrl = '',
   }) async {
     final values = {
       'title': title,
@@ -149,6 +150,7 @@ class HerDayDb {
       'mood': mood,
       'tags': tags,
       'entry_date': dateKey(date),
+      'image_url': imageUrl,
     };
     if (id == null) {
       await _c.from('journal_entries').insert({'user_id': uid, ...values});
